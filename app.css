@@ -1,0 +1,28 @@
+
+.blockMusic {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   
+}
+
+.blockMusic__item:hover {
+    background-color: #637ef5;
+}
+
+.blockMusic__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 150px;
+    background-color: #9d9dee;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.blockMusic__title {
+    font-size: 2rem;
+    display: block;
+}
+
