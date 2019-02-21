@@ -6,4 +6,4 @@ Run it using php local server
 
 ``php -S localhost:8000``
 
-Go to http://localhost:8000/game.html
+Go to http://localhost:8000/game.php
