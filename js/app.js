@@ -1,3 +1,4 @@
+// function
 
 async function getMusicList() {
     //await the response of the fetch call
@@ -8,11 +9,12 @@ async function getMusicList() {
     return data;
 }
 
-function createChild(parent, name, id){
+function createChild(parent, name, id, image){
     // div
     var div = document.createElement("div");
     div.setAttribute("id", id);
     div.classList.add("blockMusic__item");
+    div.setAttribute("style", 'background-image: url("img/'+ image + '")');
 
     // title
     var title = document.createElement("span");
@@ -42,15 +44,28 @@ function getMultipleRandom(arr, n) {
     return result;
 }
 
+function reloadPage(){
+    location.reload();
+}
+
 function checkGuess(e, randomMusic){
     if(e.id == randomMusic.id){
         alert("GG WP");
+
+        // incremente score
+        var url = window.location.href;
+        var formData = new FormData();
+        formData.append('status', 'ok');
+        fetch(url, { method: 'POST', body: formData })
+        
+        reloadPage();
     } else {
         alert("WRONG NOOOB");
+        reloadPage();
     }
 }
 
-function hydrate(data){
+function clear(data){
     songs = getMultipleRandom(data, 9);
     songs.sort( (a, b) => {
         var x = a.name.toLowerCase();
@@ -61,19 +76,36 @@ function hydrate(data){
     return songs;
 }
 
+// time
+// refresh page every minute
+window.setTimeout(() => {
+    reloadPage() 
+}, 60000)
+
+// second counter
+var seconds = 0;
+var secondeCounter = document.getElementById('seconds_counter');
+
+function incrementSeconds() {
+    seconds += 1;
+    secondeCounter.innerText = seconds + "/60";
+}
+var cancel = setInterval(incrementSeconds, 1000);
+
+// api promise
 getMusicList().then(data => {
     // create music title's block
     var parent = document.getElementById('music_block');
 
-    songs = hydrate(data, 9);
+    songs = clear(data);
 
     songs.forEach((e) => {
-        createChild(parent, e.name, e.id);
+        createChild(parent, e.name, e.id, e.image);
     });
 
     // get random music and set it to the youtube iframe
     let randomMusic = getRandomInArray(songs);
-    console.log(randomMusic);
+    console.log(randomMusic.name);
     var iframe = document.getElementById("youtube");
     iframe.setAttribute("src", "https://www.youtube.com/embed/" + randomMusic.url + '?autoplay=1');
 
