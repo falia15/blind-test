@@ -105,7 +105,6 @@ getMusicList().then(data => {
 
     // get random music and set it to the youtube iframe
     let randomMusic = getRandomInArray(songs);
-    console.log(randomMusic.name);
     var iframe = document.getElementById("youtube");
     iframe.setAttribute("src", "https://www.youtube.com/embed/" + randomMusic.url + '?autoplay=1');
 
