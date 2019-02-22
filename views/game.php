@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <section>
-        <span>Score : <?= $_SESSION['score']; ?></span>
-        <span>Time remaning : </span>
-        <span id='seconds_counter'></span>
-    </section>
+    <header class="header">
+        <span class="header__score">Score : <?= $_SESSION['score']; ?></span>
+        <span class="header__time">Time remaning : <span id='seconds_counter' class="header__seconde"></span></span>
+    </header>
     <section id="music_block" class="blockMusic">
     </section>
     <iframe id="youtube" width="25" height="25"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
