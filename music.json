@@ -52,39 +52,33 @@
         "name": "Fate Stay/Night Unlimited Blade Works",
         "url" : "WofLTwSi0uo",
         "image": "fate_ulimited.jpg"
-    },
+    }
     {
         "id": 10,
-        "name": "Clannad After Story",
-        "url" : "atxYe-nOa9w",
-        "image": "clannad_after_story.jpg"
-    },
-    {
-        "id": 11,
         "name": "One punch man",
         "url" : "atxYe-nOa9w",
         "image": "one_punch.jpg"
     },
     {
-        "id": 12,
+        "id": 11,
         "name": "Black Clover opening 3",
         "url" : "dsK8SsfqdHE",
         "image": "black_clover.jpg"
     },
     {
-        "id": 13,
+        "id": 12,
         "name": "Nagi no asukara",
         "url" : "3qpBFlASUK4",
         "image": "nagi_no_asukara.jpg"
     },
     {
-        "id": 14,
+        "id": 13,
         "name": "Made in abyss",
         "url" : "e91G8m9uM_0",
         "image": "made_in_abyss.jpg"
     },
     {
-        "id": 15,
+        "id": 14,
         "name": "Code Geass",
         "url" : "cZ7zQbMxm28",
         "image": "code_geass.jpg"
