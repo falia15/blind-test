@@ -11,13 +11,13 @@ async function getMusicList() {
 
 function createChild(parent, name, id, image){
     // div
-    var div = document.createElement("div");
+    let div = document.createElement("div");
     div.setAttribute("id", id);
     div.classList.add("blockMusic__item");
     div.setAttribute("style", 'background-image: url("img/'+ image + '")');
 
     // title
-    var title = document.createElement("span");
+    let title = document.createElement("span");
     title.innerHTML = name;
     title.classList.add("blockMusic__title");
 
@@ -31,13 +31,13 @@ function getRandomInArray(arr){
 }
 
 function getMultipleRandom(arr, n) {
-    var result = new Array(n),
+    let result = new Array(n),
         len = arr.length,
         taken = new Array(len);
     if (n > len)
         throw new RangeError("getRandom: more elements taken than available");
     while (n--) {
-        var x = Math.floor(Math.random() * len);
+        let x = Math.floor(Math.random() * len);
         result[n] = arr[x in taken ? taken[x] : x];
         taken[x] = --len in taken ? taken[len] : len;
     }
@@ -53,27 +53,28 @@ function checkGuess(e, randomMusic){
         alert("GG WP");
 
         // incremente score
-        var url = window.location.href;
-        var formData = new FormData();
+        let url = window.location.href;
+        let formData = new FormData();
         formData.append('status', 'ok');
         fetch(url, { method: 'POST', body: formData })
-        
-        reloadPage();
-    } else {
-        alert("WRONG NOOOB");
+
         reloadPage();
     }
+    alert("WRONG NOOOB");
+    reloadPage();
+    
 }
 
 function clear(data){
-    songs = getMultipleRandom(data, 9);
-    songs.sort( (a, b) => {
-        var x = a.name.toLowerCase();
-        var y = b.name.toLowerCase();
+    // get 0 random and sort name by asc
+    music = getMultipleRandom(data, 9);
+    music.sort( (a, b) => {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
         return x < y ? -1 : x > y ? 1 : 0;
     });
 
-    return songs;
+    return music;
 }
 
 // time
@@ -95,21 +96,21 @@ var cancel = setInterval(incrementSeconds, 1000);
 // api promise
 getMusicList().then(data => {
     // create music title's block
-    var parent = document.getElementById('music_block');
+    let parent = document.getElementById('music_block');
 
-    songs = clear(data);
+    music = clear(data);
 
-    songs.forEach((e) => {
+    music.forEach((e) => {
         createChild(parent, e.name, e.id, e.image);
     });
 
     // get random music and set it to the youtube iframe
-    let randomMusic = getRandomInArray(songs);
-    var iframe = document.getElementById("youtube");
+    let randomMusic = getRandomInArray(music);
+    let iframe = document.getElementById("youtube");
     iframe.setAttribute("src", "https://www.youtube.com/embed/" + randomMusic.url + '?autoplay=1');
 
     // add event to music's block
-    var nodeMusics = document.getElementById("music_block").childNodes;
+    let nodeMusics = document.getElementById("music_block").childNodes;
     nodeMusics.forEach((e) => {
         e.addEventListener("click", function(){ 
             checkGuess(e, randomMusic);
